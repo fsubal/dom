@@ -1,4 +1,17 @@
-class Dom<E extends HTMLElement> {
+type TypedEvent<
+  E extends HTMLElement,
+  K extends keyof HTMLElementEventMap
+> = HTMLElementEventMap[K] & {
+  currentTarget: E;
+  target: HTMLElement;
+};
+
+type EventHandler<
+  E extends HTMLElement,
+  K extends keyof HTMLElementEventMap
+> = (this: HTMLElement, ev: TypedEvent<E, K>) => any;
+
+export class Dom<E extends HTMLElement> {
   constructor(readonly elements: ReadonlyArray<E>) {}
 
   /**
@@ -20,16 +33,20 @@ class Dom<E extends HTMLElement> {
    */
   on<K extends keyof HTMLElementEventMap>(
     eventType: K,
-    handler: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any,
+    handler: EventHandler<E, K>,
     options?: boolean | AddEventListenerOptions
   ) {
     this.elements.forEach((element) => {
-      element.addEventListener(eventType, handler, options);
+      element.addEventListener(eventType, handler as EventListener, options);
     });
 
     const removeEventListeners = () => {
       this.elements.forEach((element) => {
-        element.removeEventListener(eventType, handler, options);
+        element.removeEventListener(
+          eventType,
+          handler as EventListener,
+          options
+        );
       });
     };
 
