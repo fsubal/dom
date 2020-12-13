@@ -2,6 +2,7 @@
   "name": "@fsubal/dom",
   "version": "1.0.0",
   "main": "dist/index.js",
+  "types": "dist/src/index.d.ts",
   "author": "fsubal <fsubal1102@gmail.com>",
   "license": "MIT",
   "scripts": {
