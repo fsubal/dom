@@ -4,6 +4,10 @@
   "main": "index.js",
   "author": "fsubal <fsubal1102@gmail.com>",
   "license": "MIT",
+  "scripts": {
+    "build": "bili",
+    "prepublishOnly": "yarn build"
+  },
   "devDependencies": {
     "bili": "^5.0.5",
     "prettier": "^2.2.1",
