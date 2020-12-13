@@ -12,6 +12,10 @@ dom('.some').find<HTMLInputElement>('.fuga').on('click', e => { ... })
 
 Returns dom collection that only provides `.on()` and `.find()`
 
+### `dom.elements`
+
+All elements that matched the selector
+
 ### `dom.on()`
 
 `addEventListener()` to all elements that matches the selector
