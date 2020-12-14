@@ -38,4 +38,4 @@ off()
 
 `querySelectorAll()` to all elements and create new `dom()` instance with the flattend one.
 
-
+※ This method is using `Array.prototype.flatMap` under the hood. Make sure your supported browsers have it or you should polyfill it.
